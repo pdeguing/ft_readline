@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 16:46:42 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 08:22:47 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/22 10:13:39 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 void	raw_mode_enable(void)
 {
 	t_termios	raw;
+	char		*tname;
+	char		tbuf[1024];
 
+	tname = getenv("TERM");
+	tgetent(tbuf, tname);
 	tcgetattr(STDERR_FILENO, &raw);
 	raw.c_lflag &= ~(ECHO | ICANON | ISIG);
 	tcsetattr(STDERR_FILENO, TCSAFLUSH, &raw);
