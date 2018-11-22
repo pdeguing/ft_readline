@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 08:25:39 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/22 08:40:36 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void						history_print(t_dlist **history);
 
 /* Execution modes */
 
-# define DEFAULT			0x0
+# define RL_DEFAULT			0x0
 # define NO_QUOTE			0b0000001
 # define NO_HISTORY			0b0000010
 
