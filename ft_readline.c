@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 07:04:20 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 08:18:29 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/22 09:41:38 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int	rl_key_control(t_rl *rl)
 	return (0);
 }
 
-char		*rl_readline(const char *prompt, int psize, int mode)
+char		*ft_readline(const char *prompt, int psize, int mode)
 {
 	t_rl			*rl;
 	char			*line;

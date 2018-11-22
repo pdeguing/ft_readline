@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 08:40:36 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/22 09:43:01 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <termios.h>
 # include <termcap.h>
 # include "../libft/includes/libft.h"
+# include "../libft/includes/ft_printf.h"
 
 typedef struct s_dlist		t_dlist;
 typedef struct s_io			t_io;
@@ -141,7 +142,7 @@ char						*rl_row_join(t_rl *rl);
 void						rl_display_print(t_rl *rl);
 void						rl_display_clear(t_rl *rl);
 
-char						*rl_readline(const char *prompt, int psize, int mode);
+char						*ft_readline(const char *prompt, int psize, int mode);
 
 
 
