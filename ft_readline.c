@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 07:04:20 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 11:35:38 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/22 13:26:30 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ char		*ft_readline(const char *prompt, int psize, int mode)
 	rl->prompt_size = psize;
 	if (prompt)
 		ft_printf(prompt);
+	ft_putstr(tgetstr("sc", NULL));
 	rl_loop(rl, mode);
 	line = NULL;
 	if (rl->status >= 0)
