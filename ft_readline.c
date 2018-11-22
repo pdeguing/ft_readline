@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 07:04:20 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 10:13:40 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/22 11:35:38 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,6 @@ t_keymap g_keymap[KEY_MAX] = {
 	{KEY_SIG_EOF, &key_sig_eof}
 };
 
-static void	rl_free(t_rl *rl)
-{
-	int		i;
-
-	i = 0;
-	while (i < rl->row_max)
-	{
-		if (rl->row[i].buf)
-			ft_strdel(&rl->row[i].buf);
-		i++;
-	}
-	free(rl->row);
-	free(rl);
-}
-
 static t_rl	*rl_init(void)
 {
 	t_rl	*new;
@@ -63,9 +48,9 @@ static t_rl	*rl_init(void)
 	new->cy = 0;
 	new->win_col = 0;
 	new->win_row = 0;
-	new->history_head = NULL;
-	new->history_state = 0;
 	new->status = 0;
+	new->history_head = g_history;
+	new->history_status = 0;
 	return (new);
 }
 
@@ -86,18 +71,8 @@ static int	rl_key_control(t_rl *rl)
 	return (0);
 }
 
-char		*ft_readline(const char *prompt, int psize, int mode)
+static void	rl_loop(t_rl *rl, int mode)
 {
-	t_rl			*rl;
-	char			*line;
-	static t_dlist	*history = NULL;
-
-	rl = rl_init();
-	rl->history_head = history;
-	raw_mode_enable();
-	rl->prompt_size = psize;
-	if (prompt)
-		ft_printf(prompt);
 	while (!rl->status)
 	{
 		rl_display_clear(rl);
@@ -111,12 +86,25 @@ char		*ft_readline(const char *prompt, int psize, int mode)
 		else
 			rl_key_control(rl);
 	}
+}
+
+char		*ft_readline(const char *prompt, int psize, int mode)
+{
+	t_rl			*rl;
+	char			*line;
+
+	rl = rl_init();
+	raw_mode_enable();
+	rl->prompt_size = psize;
+	if (prompt)
+		ft_printf(prompt);
+	rl_loop(rl, mode);
 	line = NULL;
 	if (rl->status >= 0)
 	{
 		line = rl_row_join(rl);
 		if (!(mode & NO_HISTORY))
-			history_add(line, &history);
+			rl_history_add(line);
 	}
 	rl_free(rl);
 	raw_mode_disable();

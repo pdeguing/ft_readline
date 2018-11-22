@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   history_print.c                                    :+:      :+:    :+:   */
+/*   rl_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/23 17:38:47 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 11:24:37 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/11/22 10:59:27 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/11/22 11:36:59 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-void	history_print(void)
+void	rl_free(t_rl *rl)
 {
-	t_dlist	*last_command;
-	t_dlist	*head;
+	int		i;
 
-	last_command = g_history;
-	head = g_history;
-	while (1)
+	i = 0;
+	while (i < rl->row_max)
 	{
-		ft_printf("history: %s\n", head->line);
-		head = head->next;
-		ft_printf("1\n");
-		if (head == last_command)
-			break ;
-		ft_printf("2\n");
+		if (rl->row[i].buf)
+			ft_strdel(&rl->row[i].buf);
+		i++;
 	}
+	free(rl->row);
+	free(rl);
 }

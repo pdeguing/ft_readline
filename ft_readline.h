@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 09:43:01 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/22 11:40:09 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ typedef struct termios		t_termios;
 typedef struct s_rl			t_rl;
 typedef struct s_row		t_row;
 
-
-/* History ****************************************************************** */
+extern t_dlist				*g_history;
 
 struct						s_dlist
 {
@@ -37,12 +36,8 @@ struct						s_dlist
 
 t_dlist						*history_new(void);
 
-void						history_add(char *line, t_dlist **history);
-void						history_print(t_dlist **history);
-
-/* Readline ****************************************************************** */
-
-/* Execution modes */
+void						rl_history_add(char *line);
+void						history_print(void);
 
 # define RL_DEFAULT			0x0
 # define NO_QUOTE			0b0000001
@@ -62,26 +57,25 @@ struct						s_row
 
 enum						e_keys
 {
-	 KEY_CURSOR_LEFT = 4479771,
-	 KEY_CURSOR_RIGHT = 4414235,
-	 KEY_DEL_BACKSPACE = 127,
-	 KEY_DEL_DELETE = 2117294875,
-	 KEY_DEL_BEG = 21,
-	 KEY_DEL_END = 11,
-	 KEY_HISTORY_UP = 4283163,
-	 KEY_HISTORY_DOWN = 4348699,
-	 KEY_HISTORY_SEARCH,
-	 KEY_CURSOR_BEG = 4741915,
-	 KEY_CURSOR_END = 4610843,
-	 KEY_CTL_ARROW = 993090331,
-	 KEY_NEWLINE = 10,
-	 KEY_COPY = 16,
-	 KEY_PASTE = 12,
-	 KEY_SIG_INT = 3,
-	 KEY_SIG_EOF = 4,
-	 KEY_MAX = 16
+	KEY_CURSOR_LEFT = 4479771,
+	KEY_CURSOR_RIGHT = 4414235,
+	KEY_DEL_BACKSPACE = 127,
+	KEY_DEL_DELETE = 2117294875,
+	KEY_DEL_BEG = 21,
+	KEY_DEL_END = 11,
+	KEY_HISTORY_UP = 4283163,
+	KEY_HISTORY_DOWN = 4348699,
+	KEY_HISTORY_SEARCH,
+	KEY_CURSOR_BEG = 4741915,
+	KEY_CURSOR_END = 4610843,
+	KEY_CTL_ARROW = 993090331,
+	KEY_NEWLINE = 10,
+	KEY_COPY = 16,
+	KEY_PASTE = 12,
+	KEY_SIG_INT = 3,
+	KEY_SIG_EOF = 4,
+	KEY_MAX = 16
 };
-
 
 # define KEY_CTL_UP			16693
 # define KEY_CTL_DOWN		16949
@@ -126,9 +120,9 @@ struct						s_rl
 	int						cy;
 	int						win_col;
 	int						win_row;
-	t_dlist					*history_head;
-	int						history_state;
 	int						status;
+	t_dlist					*history_head;
+	int						history_status;
 };
 
 void						raw_mode_enable(void);
@@ -142,11 +136,8 @@ char						*rl_row_join(t_rl *rl);
 void						rl_display_print(t_rl *rl);
 void						rl_display_clear(t_rl *rl);
 
-char						*ft_readline(const char *prompt, int psize, int mode);
+void						rl_free(t_rl *rl);
 
-
-
-
-
+char						*ft_readline(const char *p, int psize, int mode);
 
 #endif
