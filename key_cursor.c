@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 16:24:39 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 08:19:19 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/23 15:36:06 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	key_cursor_left(t_rl *rl)
 
 void	key_cursor_right(t_rl *rl)
 {
-	if (!(rl->cx <= rl->row[rl->cy].bsize))
+	if (!(rl->cx < rl->row[rl->cy].bsize))
 		return ;
 	ft_putstr(tgetstr("nd", NULL));
 	rl->cx++;
