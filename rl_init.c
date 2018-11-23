@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_clipboard.c                                    :+:      :+:    :+:   */
+/*   rl_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/30 16:29:32 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 15:10:27 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/11/22 15:03:16 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/11/22 17:14:05 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-char						*g_clipboard = NULL;
-
-void	key_copy(t_rl *rl)
+t_rl	*rl_init(int mode)
 {
-	ft_strdel(&g_clipboard);
-	g_clipboard = ft_strdup(rl->row[rl->cy].buf);
-}
+	t_rl	*new;
 
-void	key_paste(t_rl *rl)
-{
-	ft_strdel(&rl->row[rl->cy].buf);
-	rl->row[rl->cy].buf = ft_strdup(g_clipboard);
-	rl->row[rl->cy].bsize = ft_strlen(rl->row[rl->cy].buf);
-	rl->cx = rl->row[rl->cy].bsize;
+	new = (t_rl *)malloc(sizeof(t_rl));
+	if (!new)
+		return (NULL);
+	new->key = 0;
+	new->row = NULL;
+	new->row_max = 0;
+	rl_row_insert(new, NULL);
+	new->prompt_size = 0;
+	new->quote_status = 0;
+	new->cx = 0;
+	new->cy = 0;
+	new->win_col = 0;
+	new->win_row = 0;
+	new->status = 0;
+	new->history_head = g_history;
+	new->history_status = 0;
+	new->mode = mode;
+	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 07:04:20 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 13:26:30 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/22 17:12:05 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,6 @@ t_keymap g_keymap[KEY_MAX] = {
 	{KEY_SIG_EOF, &key_sig_eof}
 };
 
-static t_rl	*rl_init(void)
-{
-	t_rl	*new;
-
-	new = (t_rl *)malloc(sizeof(t_rl));
-	if (!new)
-		return (NULL);
-	new->key = 0;
-	new->row = NULL;
-	new->row_max = 0;
-	rl_row_insert(new, NULL);
-	new->prompt_size = 0;
-	new->quote_status = 0;
-	new->cx = 0;
-	new->cy = 0;
-	new->win_col = 0;
-	new->win_row = 0;
-	new->status = 0;
-	new->history_head = g_history;
-	new->history_status = 0;
-	return (new);
-}
-
 static int	rl_key_control(t_rl *rl)
 {
 	int		i;
@@ -71,7 +48,7 @@ static int	rl_key_control(t_rl *rl)
 	return (0);
 }
 
-static void	rl_loop(t_rl *rl, int mode)
+static void	rl_loop(t_rl *rl)
 {
 	while (!rl->status)
 	{
@@ -79,7 +56,7 @@ static void	rl_loop(t_rl *rl, int mode)
 		rl_display_print(rl);
 		rl->key = 0;
 		read(0, &rl->key, 4);
-		if (rl->key == '\n' && ((mode & NO_QUOTE) || !rl->quote_status))
+		if (rl->key == '\n' && !rl_quote(rl))
 			break ;
 		if (ft_isprint(rl->key))
 			rl_char_insert(rl);
@@ -93,20 +70,15 @@ char		*ft_readline(const char *prompt, int psize, int mode)
 	t_rl			*rl;
 	char			*line;
 
-	rl = rl_init();
+	rl = rl_init(mode);
 	raw_mode_enable();
 	rl->prompt_size = psize;
 	if (prompt)
 		ft_printf(prompt);
-	ft_putstr(tgetstr("sc", NULL));
-	rl_loop(rl, mode);
+	rl_loop(rl);
 	line = NULL;
 	if (rl->status >= 0)
-	{
 		line = rl_row_join(rl);
-		if (!(mode & NO_HISTORY))
-			rl_history_add(line);
-	}
 	rl_free(rl);
 	raw_mode_disable();
 	ft_putstr("\n");

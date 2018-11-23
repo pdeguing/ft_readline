@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 11:40:09 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/22 17:17:51 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ struct						s_rl
 	int						status;
 	t_dlist					*history_head;
 	int						history_status;
+	int						mode;
 };
 
 void						raw_mode_enable(void);
@@ -130,12 +131,15 @@ void						raw_mode_disable(void);
 
 void						rl_char_insert(t_rl *rl);
 
+int							rl_quote(t_rl *rl);
+
 void						rl_row_insert(t_rl *rl, char *buf);
 char						*rl_row_join(t_rl *rl);
 
 void						rl_display_print(t_rl *rl);
 void						rl_display_clear(t_rl *rl);
 
+t_rl						*rl_init(int mode);
 void						rl_free(t_rl *rl);
 
 char						*ft_readline(const char *p, int psize, int mode);
