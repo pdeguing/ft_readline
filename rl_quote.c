@@ -6,18 +6,20 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 17:00:06 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 17:18:55 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/26 11:01:02 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-static int		rl_quote_check(int quote, char c)
+int		rl_quote_check(int quote, char c)
 {
 	if (c == '\'' && !(quote & (Q_BSLASH | Q_DQUOTE)))
 		quote ^= Q_SQUOTE;
 	if (c == '"' && !(quote & (Q_BSLASH | Q_SQUOTE)))
 		quote ^= Q_DQUOTE;
+	if (c == '`' && !(quote & (Q_BSLASH | Q_SQUOTE)))
+		quote ^= Q_BQUOTE;
 	if (c == '\\' && (!(quote & (Q_BSLASH | Q_SQUOTE))))
 		quote |= Q_BSLASH;
 	else

@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 17:17:51 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/26 11:00:53 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ struct						s_dlist
 
 t_dlist						*history_new(void);
 
+char						*history_get_command(int number);
+char						*history_event(char *line, int index);
+char						*history_substitution(char *line);
+
 void						rl_history_add(char *line);
 void						history_print(void);
 
@@ -48,6 +52,7 @@ void						history_print(void);
 # define Q_BSLASH			0b00000001
 # define Q_SQUOTE			0b00000010
 # define Q_DQUOTE			0b00000100
+# define Q_BQUOTE			0b00001000
 
 struct						s_row
 {
@@ -131,6 +136,7 @@ void						raw_mode_disable(void);
 
 void						rl_char_insert(t_rl *rl);
 
+int							rl_quote_check(int quote, char c);
 int							rl_quote(t_rl *rl);
 
 void						rl_row_insert(t_rl *rl, char *buf);

@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   history_print.c                                    :+:      :+:    :+:   */
+/*   history_substitution.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/23 17:38:47 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/26 08:43:37 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/11/26 10:00:35 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/11/26 11:19:52 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-void	history_print(void)
+char			*history_substitution(char *line)
 {
-	t_dlist	*last_command;
-	t_dlist	*head;
+	int			i;
+	int			quote;
 
-	last_command = g_history;
-	head = g_history;
-	while (head)
+	if (!line)
+		return (NULL);
+	i = 0;
+	quote = 0;
+	while (line[i])
 	{
-		ft_printf("history: %s\n", head->line);
-		head = head->next;
+		quote = rl_quote_check(quote, line[i]);
+		if (!(quote & (Q_BSLASH | Q_SQUOTE)) && line[i] == '!'
+				&& !ft_strchr(" 	\n", line[i + 1]))
+		{
+			line = history_event(line, i);
+			if (!line)
+				return (NULL);
+			i = 0;
+			quote = 0;
+		}
+		i++;
 	}
+	return (line);
 }
