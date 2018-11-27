@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/26 11:00:53 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/27 08:41:19 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_rl			t_rl;
 typedef struct s_row		t_row;
 
 extern t_dlist				*g_history;
+extern int					g_history_size;
 
 struct						s_dlist
 {
@@ -41,7 +42,12 @@ char						*history_event(char *line, int index);
 char						*history_substitution(char *line);
 
 void						rl_history_add(char *line);
-void						history_print(void);
+
+void						history_clear_all(void);
+void						history_clear(int index);
+void						history_print(int to_print);
+
+int							history_builtin(char **args);
 
 # define RL_DEFAULT			0x0
 # define NO_QUOTE			0b0000001

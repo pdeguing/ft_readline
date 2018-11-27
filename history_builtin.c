@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   history_print.c                                    :+:      :+:    :+:   */
+/*   history_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/23 17:38:47 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/27 08:37:56 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/11/27 06:22:02 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/11/27 08:43:26 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-void	history_print(int to_print)
+int		history_builtin(char **args)
 {
-	t_dlist	*head;
-	int		i;
-
-	head = g_history;
-	i = 0;
-	while (head && head->next)
+	if (!args[0])
+		history_print(0);
+	else if (ft_isdigit(*args[0]))
+		history_print(ft_atoi(args[0]));
+	else if (!ft_strcmp("-c", args[0]))
+		history_clear_all();
+	else if (!ft_strcmp("-d", args[0]))
 	{
-		head = head->next;
-		i++;
-		if (to_print && i >= to_print - 1)
-			break ;
+		if (args[1] && ft_isdigit(*args[1]))
+			history_clear(ft_atoi(args[1]));
+		/*
+		else
+			print_error();
+			*/
 	}
-	while (head)
-	{
-		ft_printf("%5d %s\n", g_history_size - i, head->line);
-		head = head->prev;
-		i--;
-	}
+	/*
+	else if (!ft_strcmp("-w", args[0]))
+	else
+		print_error();
+		*/
+	return (0);
 }

@@ -6,13 +6,14 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 10:36:42 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/26 08:50:03 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/27 08:33:36 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
 t_dlist			*g_history = NULL;
+int				g_history_size = 0;
 
 static t_dlist	*rl_history_new(void)
 {
@@ -45,4 +46,5 @@ void			rl_history_add(char *line)
 		g_history->prev = new;
 	}
 	g_history = new;
+	g_history_size++;
 }
