@@ -6,13 +6,14 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/27 08:41:19 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/27 15:33:13 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_READLINE_H
 # define FT_READLINE_H
 
+# include <fcntl.h>
 # include <termios.h>
 # include <termcap.h>
 # include "../libft/includes/libft.h"
@@ -43,9 +44,10 @@ char						*history_substitution(char *line);
 
 void						rl_history_add(char *line);
 
+void						history_file_write(char **args);
 void						history_clear_all(void);
 void						history_clear(int index);
-void						history_print(int to_print);
+void						history_print(int fd, int to_print);
 
 int							history_builtin(char **args);
 

@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   history_print.c                                    :+:      :+:    :+:   */
+/*   history_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/23 17:38:47 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/27 15:23:45 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/11/27 15:05:25 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/11/27 15:33:14 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-void	history_print(int fd, int to_print)
+void	history_file_write(char **args)
 {
-	t_dlist	*head;
-	int		i;
+	char	*filename;
+	int		fd;
 
-	head = g_history;
-	i = 0;
-	while (head && head->next)
+	if (args[1])
+		filename = args[1];
+	else
+		filename = ft_strdup(".42sh_history");
+	fd = open(filename, O_WRONLY | O_CREAT);
+	if (fd == -1)
+		ft_putendl_fd("history_file_open: open failed", 2);
+	else
 	{
-		head = head->next;
-		i++;
-		if (to_print && i >= to_print - 1)
-			break ;
+		history_print(fd, 0);
+		close(fd);
 	}
-	while (head)
-	{
-		ft_dprintf(fd, "%5d %s\n", g_history_size - i, head->line);
-		head = head->prev;
-		i--;
-	}
+	if (!args[1])
+		ft_strdel(&filename);
 }
