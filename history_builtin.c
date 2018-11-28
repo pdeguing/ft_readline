@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 06:22:02 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/27 15:38:29 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/27 16:11:43 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void		history_usage()
 {
-	ft_printf("usage: history [n] or history -c or history -d number \
-			or history -w [filename]\n"); 
+	ft_printf("usage: history [n] or history -c or history -d number");
+	ft_printf(" or history -w [filename]\n"); 
 }
 
 int		history_builtin(char **args)
