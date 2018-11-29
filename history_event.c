@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 08:43:52 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/26 11:19:53 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/29 11:53:44 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char			*history_event(char *line, int index)
 	char		*command;
 	char		*suffix;
 	int			size;
-	
+
 	new = NULL;
 	command = NULL;
 	size = history_event_command(line, &command, index + 1);

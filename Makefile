@@ -6,7 +6,7 @@
 #    By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 07:33:11 by pdeguing          #+#    #+#              #
-#    Updated: 2018/11/27 15:26:07 by pdeguing         ###   ########.fr        #
+#    Updated: 2018/11/29 08:20:47 by pdeguing         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ NAME		= libft_readline.a
 
 SRCS		= ft_readline.c rl_char.c rl_display.c rl_quote.c \
 			  rl_row.c key_clipboard.c key_ctl_arrow.c key_cursor.c \
-			  key_del.c key_history.c key_newline.c key_sig.c \
+			  key_del.c key_history.c key_newline.c key_sig.c key_completion.c \
 			  raw_mode.c rl_history.c rl_free.c history_print.c rl_init.c \
 			  history_substitution.c history_event.c history_get_command.c \
-			  history_builtin.c history_clear.c history_file.c
+			  history_builtin.c history_clear.c history_file.c rl_completion.c
 
 all: $(NAME)
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rl_readline.c                                      :+:      :+:    :+:   */
+/*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 07:04:20 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 17:12:05 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/11/29 08:14:44 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/11/29 08:39:16 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ t_keymap g_keymap[KEY_MAX] = {
 	{KEY_COPY, &key_copy},
 	{KEY_PASTE, &key_paste},
 	{KEY_SIG_INT, &key_sig_int},
-	{KEY_SIG_EOF, &key_sig_eof}
+	{KEY_SIG_EOF, &key_sig_eof},
+	{KEY_COMPLETION, &key_completion}
 };
 
 static int	rl_key_control(t_rl *rl)

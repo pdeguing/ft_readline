@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 17:00:06 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/26 11:01:02 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/29 11:51:45 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		rl_quote_check(int quote, char c)
 	return (quote);
 }
 
-int				rl_quote(t_rl *rl)
+int		rl_quote(t_rl *rl)
 {
 	int		i;
 	int		j;

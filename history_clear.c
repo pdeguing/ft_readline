@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 07:36:49 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/27 08:37:52 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/29 11:52:45 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		history_clear_node(t_dlist *node)
 	node = NULL;
 }
 
-void		history_clear_all(void)
+void			history_clear_all(void)
 {
 	t_dlist		*tmp;
 	t_dlist		*head;
@@ -35,7 +35,7 @@ void		history_clear_all(void)
 	g_history = NULL;
 }
 
-void		history_clear(int index)
+void			history_clear(int index)
 {
 	t_dlist	*head;
 	int		i;

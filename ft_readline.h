@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/27 15:33:13 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/29 11:52:21 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include <fcntl.h>
 # include <termios.h>
 # include <termcap.h>
+# include <dirent.h>
 # include "../libft/includes/libft.h"
 # include "../libft/includes/ft_printf.h"
+# include "../libft/includes/env.h"
 
 typedef struct s_dlist		t_dlist;
 typedef struct s_io			t_io;
@@ -87,7 +89,8 @@ enum						e_keys
 	KEY_PASTE = 12,
 	KEY_SIG_INT = 3,
 	KEY_SIG_EOF = 4,
-	KEY_MAX = 16
+	KEY_COMPLETION = 9,
+	KEY_MAX = 17
 };
 
 # define KEY_CTL_UP			16693
@@ -121,6 +124,7 @@ void						key_ctl_up(t_rl *rl);
 void						key_ctl_down(t_rl *rl);
 void						key_ctl_left(t_rl *rl);
 void						key_ctl_right(t_rl *rl);
+void						key_completion(t_rl *rl);
 
 struct						s_rl
 {
@@ -141,6 +145,9 @@ struct						s_rl
 
 void						raw_mode_enable(void);
 void						raw_mode_disable(void);
+
+char						*rl_completion(t_rl *rl, char *word,
+		int is_command_name);
 
 void						rl_char_insert(t_rl *rl);
 
