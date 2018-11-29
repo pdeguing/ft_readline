@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/29 11:52:21 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/29 12:13:51 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <dirent.h>
 # include "../libft/includes/libft.h"
 # include "../libft/includes/ft_printf.h"
-# include "../libft/includes/env.h"
+# include "../includes/env.h"
 
 typedef struct s_dlist		t_dlist;
 typedef struct s_io			t_io;
