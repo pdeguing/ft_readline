@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 09:40:51 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/26 11:19:56 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/29 12:29:30 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char		*history_get_command_n(int number)
 		return (NULL);
 	while (head && head->next)
 		head = head->next;
-	while (number > 0)
+	while (number > 1)
 	{
 		head = head->prev;
 		if (!head)
