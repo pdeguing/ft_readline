@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_clipboard.c                                    :+:      :+:    :+:   */
+/*   rl_window.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/30 16:29:32 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/30 12:53:58 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/11/30 10:31:05 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/11/30 11:16:42 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-char						*g_clipboard = NULL;
-
-void	key_copy(t_rl *rl)
+void	rl_window(t_rl *rl)
 {
-	ft_strdel(&g_clipboard);
-	g_clipboard = ft_strdup(rl->row[rl->cy].buf);
-}
+	t_winsize	window;
 
-void	key_paste(t_rl *rl)
-{
-	ft_strdel(&rl->row[rl->cy].buf);
-	rl->row[rl->cy].buf = ft_strdup(g_clipboard);
-	rl->row[rl->cy].bsize = ft_strlen(rl->row[rl->cy].buf);
-	rl->index = rl->row[rl->cy].bsize;
-	rl->cx = ft_max(rl->index, rl->win_col);
+	ioctl(0, TIOCGWINSZ, &window);
+	rl->win_col = window.ws_col;
+	rl->win_row = window.ws_row;
 }

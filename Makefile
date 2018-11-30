@@ -6,7 +6,7 @@
 #    By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 07:33:11 by pdeguing          #+#    #+#              #
-#    Updated: 2018/11/30 08:46:47 by pdeguing         ###   ########.fr        #
+#    Updated: 2018/11/30 13:02:18 by pdeguing         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS		= ft_readline.c rl_char.c rl_display.c rl_quote.c \
 			  key_del.c key_history.c key_newline.c key_sig.c key_completion.c \
 			  raw_mode.c history_list.c rl_free.c history_print.c rl_init.c \
 			  history_substitution.c history_event.c history_get_command.c \
-			  history_builtin.c history_clear.c history_file.c rl_completion.c
+			  history_builtin.c history_clear.c history_file.c rl_completion.c \
+			  rl_window.c ft_max.c
 
 all: $(NAME)
 

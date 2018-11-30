@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/17 09:52:40 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 08:19:06 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:11:41 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	key_ctl_up(t_rl *rl)
 	rl->cy--;
 	if (rl->cx > rl->row[rl->cy].bsize)
 		rl->cx = rl->row[rl->cy].bsize;
+	if (rl->index > rl->row[rl->cy].bsize)
+		rl->index = rl->row[rl->cy].bsize;
 }
 
 void	key_ctl_down(t_rl *rl)
@@ -44,22 +46,24 @@ void	key_ctl_down(t_rl *rl)
 	rl->cy++;
 	if (rl->cx > rl->row[rl->cy].bsize)
 		rl->cx = rl->row[rl->cy].bsize;
+	if (rl->index > rl->row[rl->cy].bsize)
+		rl->index = rl->row[rl->cy].bsize;
 }
 
 void	key_ctl_left(t_rl *rl)
 {
-	while (rl->cx && !ft_strchr(" 	", rl->row[rl->cy].buf[rl->cx]))
+	while (rl->index && !ft_strchr(" 	", rl->row[rl->cy].buf[rl->index]))
 		key_cursor_left(rl);
-	while (rl->cx && ft_strchr(" 	", rl->row[rl->cy].buf[rl->cx]))
+	while (rl->index && ft_strchr(" 	", rl->row[rl->cy].buf[rl->index]))
 		key_cursor_left(rl);
 }
 
 void	key_ctl_right(t_rl *rl)
 {
-	while (rl->cx < rl->row[rl->cy].bsize &&
-			!ft_strchr(" 	", rl->row[rl->cy].buf[rl->cx]))
+	while (rl->index < rl->row[rl->cy].bsize &&
+			!ft_strchr(" 	", rl->row[rl->cy].buf[rl->index]))
 		key_cursor_right(rl);
-	while (rl->cx < rl->row[rl->cy].bsize &&
-			ft_strchr(" 	", rl->row[rl->cy].buf[rl->cx]))
+	while (rl->index < rl->row[rl->cy].bsize &&
+			ft_strchr(" 	", rl->row[rl->cy].buf[rl->index]))
 		key_cursor_right(rl);
 }

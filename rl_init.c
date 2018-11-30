@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 15:03:16 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 17:14:05 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 12:26:25 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_rl	*rl_init(int mode)
 	new->key = 0;
 	new->row = NULL;
 	new->row_max = 0;
+	new->index = 0;
+	new->offset = 0;
 	rl_row_insert(new, NULL);
 	new->prompt_size = 0;
 	new->quote_status = 0;

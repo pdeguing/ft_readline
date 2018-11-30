@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 16:24:39 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/23 15:36:06 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:11:46 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,40 @@
 
 void	key_cursor_left(t_rl *rl)
 {
-	if (!(rl->cx > 0))
+	if (rl->index == 0)
 		return ;
-	ft_putstr(tgetstr("le", NULL));
-	rl->cx--;
+	if (rl->cx > 0)
+	{
+		ft_putstr(tgetstr("le", NULL));
+		rl->cx--;
+	}
+	else
+		rl->offset--;
+	rl->index--;
 }
 
 void	key_cursor_right(t_rl *rl)
 {
-	if (!(rl->cx < rl->row[rl->cy].bsize))
+	if (rl->index >= rl->row[rl->cy].bsize || rl->cx > rl->index)
 		return ;
-	ft_putstr(tgetstr("nd", NULL));
-	rl->cx++;
+	if (rl->cx < rl->win_col - rl->prompt_size)
+	{
+		ft_putstr(tgetstr("nd", NULL));
+		rl->cx++;
+	}
+	else
+		rl->offset++;
+	rl->index++;
 }
 
 void	key_cursor_beg(t_rl *rl)
 {
-	while (rl->cx)
+	while (rl->index)
 		key_cursor_left(rl);
 }
 
 void	key_cursor_end(t_rl *rl)
 {
-	while (rl->cx < rl->row[rl->cy].bsize)
+	while (rl->index < rl->row[rl->cy].bsize)
 		key_cursor_right(rl);
 }

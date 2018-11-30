@@ -6,13 +6,13 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 08:28:44 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/22 16:46:16 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:12:51 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-void	rl_display_clear(t_rl *rl)
+void		rl_display_clear(t_rl *rl)
 {
 	if (rl->cy == 0)
 		ft_putstr(tgoto(tgetstr("ch", NULL), 0, rl->prompt_size));
@@ -21,12 +21,27 @@ void	rl_display_clear(t_rl *rl)
 	ft_putstr(tgetstr("ce", NULL));
 }
 
-void	rl_display_print(t_rl *rl)
+static int	ft_min(int a, int b)
 {
-	int	i;
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+void		rl_display_print(t_rl *rl)
+{
+	int		size;
 
 	if (rl->row[rl->cy].buf)
-		ft_putstr(rl->row[rl->cy].buf);
+	{
+		size = rl->win_col - rl->prompt_size;
+		if (rl->row[rl->cy].bsize >= size)
+		{
+			ft_printf("%.*s", size, rl->row[rl->cy].buf + rl->offset);
+		}
+		else
+			ft_printf(rl->row[rl->cy].buf);
+	}
 	if (rl->cy == 0)
 		ft_putstr(tgoto(tgetstr("ch", NULL), 0, rl->prompt_size + rl->cx));
 	else

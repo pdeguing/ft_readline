@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 08:14:44 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/29 08:39:16 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:11:47 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	rl_loop(t_rl *rl)
 {
 	while (!rl->status)
 	{
+		rl_window(rl);
 		rl_display_clear(rl);
 		rl_display_print(rl);
 		rl->key = 0;

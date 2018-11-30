@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/01 17:06:46 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/28 09:03:50 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:12:20 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ void			rl_char_insert(t_rl *rl)
 	if (tmp)
 	{
 		ft_strcpy(rl->row[rl->cy].buf, tmp);
-		ft_memmove(rl->row[rl->cy].buf + rl->cx + 1,
-				rl->row[rl->cy].buf + rl->cx, rl->row[rl->cy].bsize - rl->cx);
+		ft_memmove(rl->row[rl->cy].buf + rl->index + 1,
+				rl->row[rl->cy].buf + rl->index,
+				rl->row[rl->cy].bsize - rl->index);
 	}
-	rl->row[rl->cy].buf[rl->cx] = rl->key;
+	rl->row[rl->cy].buf[rl->index] = rl->key;
 	ft_strdel(&tmp);
 	key_cursor_right(rl);
 }

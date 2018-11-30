@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 08:16:23 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/29 11:53:24 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 12:55:40 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int		word_begin(t_rl *rl)
 {
 	int		i;
 
-	i = rl->cx;
+	i = rl->index;
 	while (i > 0)
 	{
 		i--;
@@ -36,7 +36,7 @@ static int		word_get(char **pstr, t_rl *rl)
 	int		size;
 
 	i = word_begin(rl);
-	size = rl->cx - i;
+	size = rl->index - i;
 	word = ft_strnew(size);
 	ft_strncpy(word, &rl->row[rl->cy].buf[i], size);
 	*pstr = word;
@@ -66,7 +66,8 @@ static void		replace_buf(t_rl *rl, char *new, char *str, char *word)
 	ft_strdel(&rl->row[rl->cy].buf);
 	rl->row[rl->cy].buf = new;
 	rl->row[rl->cy].bsize = ft_strlen(new);
-	rl->cx = rl->row[rl->cy].bsize;
+	rl->index = rl->row[rl->cy].bsize;
+	rl->cx = ft_max(rl->index, rl->win_col);
 }
 
 void			key_completion(t_rl *rl)

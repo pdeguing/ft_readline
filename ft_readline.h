@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/30 09:20:32 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:02:12 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <termios.h>
 # include <termcap.h>
 # include <dirent.h>
+# include <sys/ioctl.h>
 # include "../libft/includes/libft.h"
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/get_next_line.h"
@@ -28,6 +29,7 @@ typedef struct s_keymap		t_keymap;
 typedef struct termios		t_termios;
 typedef struct s_rl			t_rl;
 typedef struct s_row		t_row;
+typedef struct winsize		t_winsize;
 
 extern t_dlist				*g_history;
 extern int					g_history_size;
@@ -132,6 +134,8 @@ struct						s_rl
 	int						key;
 	t_row					*row;
 	int						row_max;
+	int						index;
+	int						offset;
 	int						prompt_size;
 	int						quote_status;
 	int						cx;
@@ -161,9 +165,13 @@ char						*rl_row_join(t_rl *rl);
 void						rl_display_print(t_rl *rl);
 void						rl_display_clear(t_rl *rl);
 
+void						rl_window(t_rl *rl);
+
 t_rl						*rl_init(int mode);
 void						rl_free(t_rl *rl);
 
 char						*ft_readline(const char *p, int psize, int mode);
+
+int							ft_max(int a, int b);
 
 #endif
