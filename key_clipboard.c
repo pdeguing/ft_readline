@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 16:29:32 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/30 12:53:58 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:25:57 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	key_paste(t_rl *rl)
 	rl->row[rl->cy].buf = ft_strdup(g_clipboard);
 	rl->row[rl->cy].bsize = ft_strlen(rl->row[rl->cy].buf);
 	rl->index = rl->row[rl->cy].bsize;
-	rl->cx = ft_max(rl->index, rl->win_col);
+	rl->cx = ft_min(rl->index, rl->win_col);
 }

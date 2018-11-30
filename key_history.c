@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 16:17:20 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/30 12:59:21 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:25:47 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	key_history_up(t_rl *rl)
 	else
 		rl->history_status = 0;
 	rl->index = rl->row[rl->cy].bsize;
-	rl->cx = ft_max(rl->index, rl->win_col);
+	rl->cx = ft_min(rl->index, rl->win_col);
 }
 
 void	key_history_down(t_rl *rl)
@@ -51,5 +51,5 @@ void	key_history_down(t_rl *rl)
 		rl->history_status = KEY_HISTORY_DOWN;
 	}
 	rl->index = rl->row[rl->cy].bsize;
-	rl->cx = ft_max(rl->index, rl->win_col);
+	rl->cx = ft_min(rl->index, rl->win_col);
 }

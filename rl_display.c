@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 08:28:44 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/30 13:12:51 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:27:44 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@ void		rl_display_clear(t_rl *rl)
 	else
 		ft_putstr(tgoto(tgetstr("ch", NULL), 0, 2));
 	ft_putstr(tgetstr("ce", NULL));
-}
-
-static int	ft_min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
 }
 
 void		rl_display_print(t_rl *rl)

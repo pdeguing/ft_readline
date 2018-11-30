@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/30 13:02:12 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:26:24 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,6 @@ void						rl_free(t_rl *rl);
 
 char						*ft_readline(const char *p, int psize, int mode);
 
-int							ft_max(int a, int b);
+int							ft_min(int a, int b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 08:16:23 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/30 12:55:40 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:27:31 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void		replace_buf(t_rl *rl, char *new, char *str, char *word)
 	rl->row[rl->cy].buf = new;
 	rl->row[rl->cy].bsize = ft_strlen(new);
 	rl->index = rl->row[rl->cy].bsize;
-	rl->cx = ft_max(rl->index, rl->win_col);
+	rl->cx = ft_min(rl->index, rl->win_col);
 }
 
 void			key_completion(t_rl *rl)
