@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 12:01:21 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/26 11:13:29 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 08:54:41 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char			*rl_row_join(t_rl *rl)
 	{
 		if (rl->row[i].buf && !(rl->mode & NO_HISTORY)
 				&& !ft_strchr(rl->row[i].buf, '!'))
-			rl_history_add(rl->row[i].buf);
+			history_add(rl->row[i].buf);
 		if (rl->row[i].buf)
 			line = ft_strffjoin(line, rl->row[i].buf);
 		i++;

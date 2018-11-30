@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 15:05:25 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/27 15:51:08 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 09:20:31 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,35 @@ void	history_file_write(char **args)
 	char	*filename;
 	int		fd;
 
-	if (args[2])
-		filename = args[2];
+	if (args && args[2])
+		fd = open(args[2], O_RDONLY);
 	else
-		filename = ft_strdup(".42sh_history");
-	fd = open(filename, O_WRONLY | O_CREAT, 0644);
+		fd = open(".42sh_history", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
-		ft_putendl_fd("history_file_open: open failed", 2);
+		ft_putendl_fd("history_file: open failed", 2);
 	else
 	{
 		history_print(fd, 0);
 		close(fd);
 	}
-	if (!args[2])
-		ft_strdel(&filename);
+}
+
+void	history_file_read(char **args)
+{
+	int		fd;
+	char	*line;
+
+	if (args && args[2])
+		fd = open(args[2], O_RDONLY);
+	else
+		fd = open(".42sh_history", O_RDONLY);
+	if (fd == -1)
+		return ;
+	line = NULL;
+	while (get_next_line(fd, &line) > 0)
+	{
+		history_add(line + 6);
+		ft_strdel(&line);
+	}
+	close(fd);
 }

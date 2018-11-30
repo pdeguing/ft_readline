@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rl_history.c                                       :+:      :+:    :+:   */
+/*   history_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 10:36:42 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/27 08:33:36 by pdeguing         ###   ########.fr       */
+/*   Created: 2018/11/30 08:52:14 by pdeguing          #+#    #+#             */
+/*   Updated: 2018/11/30 09:20:30 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_dlist			*g_history = NULL;
 int				g_history_size = 0;
 
-static t_dlist	*rl_history_new(void)
+static t_dlist	*history_new(void)
 {
 	t_dlist	*new;
 
@@ -28,13 +28,13 @@ static t_dlist	*rl_history_new(void)
 	return (new);
 }
 
-void			rl_history_add(char *line)
+void			history_add(char *line)
 {
 	t_dlist	*new;
 
 	if (!line)
 		return ;
-	new = rl_history_new();
+	new = history_new();
 	if (!new)
 		return ;
 	new->line = ft_strdup(line);

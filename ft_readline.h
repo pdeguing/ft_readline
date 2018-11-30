@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/29 12:13:51 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/11/30 09:20:32 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <dirent.h>
 # include "../libft/includes/libft.h"
 # include "../libft/includes/ft_printf.h"
+# include "../libft/includes/get_next_line.h"
 # include "../includes/env.h"
 
 typedef struct s_dlist		t_dlist;
@@ -38,15 +39,15 @@ struct						s_dlist
 	t_dlist					*next;
 };
 
-t_dlist						*history_new(void);
-
 char						*history_get_command(int number);
 char						*history_event(char *line, int index);
 char						*history_substitution(char *line);
 
-void						rl_history_add(char *line);
+void						history_add(char *line);
 
 void						history_file_write(char **args);
+void						history_file_read(char **args);
+
 void						history_clear_all(void);
 void						history_clear(int index);
 void						history_print(int fd, int to_print);
