@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 17:00:06 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/29 11:51:45 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/12/01 12:48:19 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,22 @@ int		rl_quote(t_rl *rl)
 {
 	int		i;
 	int		j;
-	int		quote;
 
-	quote = 0;
+	rl->quote_status = 0;
 	if (rl->mode & NO_QUOTE)
-		return (quote);
+		return (rl->quote_status);
 	i = 0;
 	while (i < rl->row_max)
 	{
 		j = 0;
+		rl->quote_status &= ~Q_BSLASH;
 		while (j < rl->row[i].bsize)
 		{
-			quote = rl_quote_check(quote, rl->row[i].buf[j]);
+			rl->quote_status = rl_quote_check(rl->quote_status,
+					rl->row[i].buf[j]);
 			j++;
 		}
 		i++;
 	}
-	return (quote);
+	return (rl->quote_status);
 }

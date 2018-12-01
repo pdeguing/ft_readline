@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/11/30 13:26:24 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/12/01 12:48:35 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,10 @@ struct						s_rl
 void						raw_mode_enable(void);
 void						raw_mode_disable(void);
 
+void						rl_free_list(t_list **ref);
+char						*rl_completion_match(t_list *directory, char *file);
+t_list						*rl_completion_directory(char *path,
+		int is_command_name);
 char						*rl_completion(t_rl *rl, char *word,
 		int is_command_name);
 
