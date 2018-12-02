@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 08:28:44 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/12/01 16:10:27 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/12/01 19:59:55 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ void		rl_display_print(t_rl *rl)
 	{
 		size = rl->win_col - rl->prompt_size;
 		if (rl->row[rl->cy].bsize >= size)
-		{
 			ft_printf("%.*s", size, rl->row[rl->cy].buf + rl->offset);
-		}
 		else
 			ft_printf(rl->row[rl->cy].buf);
 	}
