@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 07:24:35 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/12/01 12:48:35 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/12/01 17:54:55 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ enum						e_keys
 	KEY_CURSOR_END = 4610843,
 	KEY_CTL_ARROW = 993090331,
 	KEY_NEWLINE = 10,
-	KEY_COPY = 16,
-	KEY_PASTE = 12,
+	KEY_COPY = 25,
+	KEY_PASTE = 16,
 	KEY_SIG_INT = 3,
 	KEY_SIG_EOF = 4,
 	KEY_COMPLETION = 9,
