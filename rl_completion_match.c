@@ -6,7 +6,7 @@
 /*   By: pdeguing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 09:42:30 by pdeguing          #+#    #+#             */
-/*   Updated: 2018/12/01 11:35:35 by pdeguing         ###   ########.fr       */
+/*   Updated: 2018/12/01 17:02:47 by pdeguing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ static t_list	*rl_completion_match_list(t_list *directory, char *file)
 	while (head)
 	{
 		dirp = opendir(head->content);
+		head = head->next;
+		if (!dirp)
+			continue ;
 		while ((entry = readdir(dirp)))
 		{
 			if (!ft_strncmp(entry->d_name, file, ft_strlen(file)))
@@ -59,7 +62,6 @@ static t_list	*rl_completion_match_list(t_list *directory, char *file)
 							ft_strlen(entry->d_name) + 1));
 		}
 		closedir(dirp);
-		head = head->next;
 	}
 	return (match);
 }
